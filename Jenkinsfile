@@ -45,6 +45,24 @@ pipeline {
             }
         }
 
+        stage('Terraform Destroy') {
+            steps {
+                script {
+                    // Using withCredentials to inject AWS credentials
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+                        credentialsId: 'ragu_aws_credentials'
+                    ]]) {
+                        // Your Terraform commands here
+                        sh 'terraform destroy -var-file=env/dev.tfvars -auto-approve'
+                        sh 'terraform destroy -var-file=env/prod.tfvars -auto-approve'
+                    }
+                }
+            }
+        }
+
 
 
         // stage('Terraform Plan') {
