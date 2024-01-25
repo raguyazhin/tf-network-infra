@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Init') {
+        stage('Terraform Plan') {
             steps {
                 script {
                     // Using withCredentials to inject AWS credentials
