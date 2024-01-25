@@ -25,23 +25,43 @@ pipeline {
             }
         }
 
-        stage('Terraform Plan') {
+        stage('Terraform Init') {
             steps {
                 script {
-                    sh 'terraform plan -var-file=env/dev.tfvars'
-                    sh 'terraform plan -var-file=env/prod.tfvars'
+                    // Using withCredentials to inject AWS credentials
+                    withCredentials([[
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+                        credentialsId: 'ragu_aws_credentials'
+                    ]]) {
+                        // Your Terraform commands here
+                        sh 'terraform plan -var-file=env/dev.tfvars'
+                        sh 'terraform plan -var-file=env/prod.tfvars'
+                    }
                 }
             }
         }
 
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    sh 'terraform apply -var-file=env/dev.tfvars -auto-approve'
-                    sh 'terraform apply -var-file=env/prod.tfvars -auto-approve'
-                }
-            }
-        }
+
+
+        // stage('Terraform Plan') {
+        //     steps {
+        //         script {
+        //             sh 'terraform plan -var-file=env/dev.tfvars'
+        //             sh 'terraform plan -var-file=env/prod.tfvars'
+        //         }
+        //     }
+        // }
+
+        // stage('Terraform Apply') {
+        //     steps {
+        //         script {
+        //             sh 'terraform apply -var-file=env/dev.tfvars -auto-approve'
+        //             sh 'terraform apply -var-file=env/prod.tfvars -auto-approve'
+        //         }
+        //     }
+        // }
 
         // stage('Terraform Destroy') {
         //     steps {
