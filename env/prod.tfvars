@@ -1,3 +1,4 @@
-region     = "us-west-2"
-vpc_cidr   = "10.1.0.0/16"
-vpc_name   = "prod-vpc"
+region           = "us-ashburn-1"
+vcn_cidr         = "10.10.0.0/16"
+vcn_name         = "prod-virtual-cloud-network"
+compartment_id   = "ocid1.compartment.oc1..your_actual_compartment_id"

@@ -1,13 +1,9 @@
-provider "aws" {
+provider "oci" {
   region = var.region
 }
 
-resource "aws_vpc" "my_vpc" {
-  cidr_block = var.vpc_cidr
-  enable_dns_support = true
-  enable_dns_hostnames = true
-
-  tags = {
-    Name = var.vpc_name
-  }
+resource "oci_core_vcn" "my_vcn" {
+  cidr_block     = var.vcn_cidr
+  display_name   = var.vcn_name
+  compartment_id = var.compartment_id
 }

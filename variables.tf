@@ -1,14 +1,19 @@
 variable "region" {
-  description = "AWS region"
+  description = "OCI region"
   type        = string
 }
 
-variable "vpc_cidr" {
-  description = "CIDR block for VPC"
+variable "vcn_cidr" {
+  description = "CIDR block for VCN"
   type        = string
 }
 
-variable "vpc_name" {
-  description = "Name for VPC"
+variable "vcn_name" {
+  description = "Name for VCN"
+  type        = string
+}
+
+variable "compartment_id" {
+  description = "OCI Compartment ID"
   type        = string
 }

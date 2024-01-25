@@ -1,3 +1,3 @@
-output "vpc_id" {
-  value = aws_vpc.my_vpc.id
+output "vcn_id" {
+  value = oci_core_vcn.my_vcn.id
 }
