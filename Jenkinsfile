@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        TF_VAR_access_key = credentials('AWS_ACCESS_KEY_ID')
-        TF_VAR_secret_key = credentials('AWS_SECRET_ACCESS_KEY')
-    }
+    // environment {
+    //     TF_VAR_access_key = credentials('AWS_ACCESS_KEY_ID')
+    //     TF_VAR_secret_key = credentials('AWS_SECRET_ACCESS_KEY')
+    // }
 
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Plan') {
+        stage('Terraform Plan and Apply') {
             steps {
                 script {
                     // Using withCredentials to inject AWS credentials
@@ -38,6 +38,8 @@ pipeline {
                         // Your Terraform commands here
                         sh 'terraform plan -var-file=env/dev.tfvars'
                         sh 'terraform plan -var-file=env/prod.tfvars'
+                        sh 'terraform apply -var-file=env/dev.tfvars -auto-approve'
+                        sh 'terraform apply -var-file=env/prod.tfvars -auto-approve'
                     }
                 }
             }
