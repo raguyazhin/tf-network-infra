@@ -45,10 +45,8 @@ pipeline {
                         credentialsId: 'ragu_aws_credentials'
                     ]]) {
                         // Your Terraform commands here
-                        sh 'terraform plan -var-file=env/dev.tfvars'
-                        sh 'terraform plan -var-file=env/prod.tfvars'
-                        sh 'terraform apply -var-file=env/dev.tfvars -auto-approve'
-                        sh 'terraform apply -var-file=env/prod.tfvars -auto-approve'
+                        sh 'terraform plan'
+                        sh 'terraform apply -auto-approve'
                     }
                 }
             }
