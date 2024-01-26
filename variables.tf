@@ -12,3 +12,8 @@ variable "vpc_name" {
   description = "Name for VPC"
   type        = string
 }
+
+variable "environment" {
+  description = "Environment (e.g., dev, prod)"
+  type        = string
+}
