@@ -72,35 +72,6 @@ pipeline {
             }
         }
 
-
-
-        // stage('Terraform Plan') {
-        //     steps {
-        //         script {
-        //             sh 'terraform plan -var-file=env/dev.tfvars'
-        //             sh 'terraform plan -var-file=env/prod.tfvars'
-        //         }
-        //     }
-        // }
-
-        // stage('Terraform Apply') {
-        //     steps {
-        //         script {
-        //             sh 'terraform apply -var-file=env/dev.tfvars -auto-approve'
-        //             sh 'terraform apply -var-file=env/prod.tfvars -auto-approve'
-        //         }
-        //     }
-        // }
-
-        // stage('Terraform Destroy') {
-        //     steps {
-        //         script {
-        //             input 'Do you really want to destroy the infrastructure?'
-
-        //             sh 'terraform destroy -auto-approve'
-        //         }
-        //     }
-        // }
     }
 
     post {
