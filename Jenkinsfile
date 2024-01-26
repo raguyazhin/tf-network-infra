@@ -6,7 +6,6 @@ pipeline {
     //     TF_VAR_secret_key = credentials('AWS_SECRET_ACCESS_KEY')
     // }
 
-
     stages {
 
         stage('Checkout') {
