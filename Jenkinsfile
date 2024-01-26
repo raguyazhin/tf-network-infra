@@ -8,7 +8,7 @@ pipeline {
 
 
     stages {
-        
+
         stage('Checkout') {
             steps {
                 script {
@@ -28,8 +28,7 @@ pipeline {
                         credentialsId: 'ragu_aws_credentials'
                     ]]) {
                         // Your Terraform commands here
-                        sh 'terraform init -var-file=env/dev.tfvars'
-                        sh 'terraform init -var-file=env/prod.tfvars'                       
+                        sh 'terraform init'                      
                     }
                 }
             }
