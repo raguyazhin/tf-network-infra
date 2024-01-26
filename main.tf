@@ -11,3 +11,13 @@ resource "aws_vpc" "my_vpc" {
     Name = var.vpc_name
   }
 }
+
+terraform {
+  backend "s3" {
+    bucket         = "s3-atmecs-source"
+    key            = "aws_infra.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "tfStateLock"
+  }
+}
